@@ -4,7 +4,7 @@ class Cart < ActiveRecord::Base
   has_many :items, through: :line_items
 
   def total
-    self.items.map{ |item| item.price}.sum
+    self.line_items.sum {|line_item| line_item.quantity * line_item.item.price}
   end
 
   def add_item(item_id)
