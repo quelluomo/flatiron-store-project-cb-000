@@ -21,7 +21,6 @@ class Cart < ActiveRecord::Base
     self.status = "submitted"
     stock_update
     current_user.current_cart.destroy
-    remove_inventory
   end
 
   def stock_update
@@ -30,12 +29,6 @@ class Cart < ActiveRecord::Base
       line_item.item.inventory -= line_item.quantity
       line_item.item.save
     end
-    end
-  end
-
-  def remove_inventory
-    line_items.each do |line_item|
-      line_item.item.remove(line_item.quantity)
     end
   end
 
