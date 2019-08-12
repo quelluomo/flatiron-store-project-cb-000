@@ -20,7 +20,6 @@ class Cart < ActiveRecord::Base
   def checkout
     self.status = "submitted"
     stock_update
-    current_user.current_cart.destroy
   end
 
   def stock_update
