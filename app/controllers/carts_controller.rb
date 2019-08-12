@@ -5,7 +5,7 @@ class CartsController < ApplicationController
   end
 
   def checkout
-    @cart = Cart.find(params[:id])
+    @cart = Cart.find_or_create_by(params[:id])
     @cart.checkout
     current_user.current_cart.destroy
     redirect_to cart_path @cart
